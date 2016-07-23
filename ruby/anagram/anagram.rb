@@ -15,12 +15,22 @@ class Anagram
 
   class PossibleMatch
     module StringToHash
-      refine String do
-        def letter_count
-          Hash.new(0).tap do |letter_hash|
-            self.chars.each do |letter|
-              letter_hash[letter] += 1
+      module ArrayEachWithObject
+        refine Array do
+          def each_with_object(memo, &block)
+            memo.tap do
+              self.each do |x|
+                block.call(memo, x)
+              end
             end
+          end
+        end
+      end
+      refine String do
+        using ArrayEachWithObject
+        def letter_count
+          self.chars.each_with_object Hash.new(0) do |letter_hash, letter|
+            letter_hash[letter] += 1
           end
         end
       end
