@@ -4,10 +4,12 @@ class Alphametics
   end
 
   class Puzzle
-    def initialize(string)
-      @parts = string.split.map do |part|
-        if /[+*-=^][=]?/.match part
-          part.sub('^','**')
+    OPERATORS = %w(+ - * / ^ % ==).freeze
+
+    def initialize(equation)
+      @parts = equation.split.map do |part|
+        if OPERATORS.include?(part) || part.match(/[[:digit:]]+/)
+          part.sub('^','**') # Ruby cant handle that form of exponent
         else
           Word.new part
         end
@@ -75,7 +77,7 @@ class Alphametics
       private
 
       def valid?
-        valid_words? && unique_letters?
+        valid_words?
       end
 
       def equation
@@ -94,10 +96,6 @@ class Alphametics
 
       def valid_words?
         words.all? { |w| w.valid? letter_hash }
-      end
-
-      def unique_letters?
-        letter_hash.values.uniq.count == letter_hash.values.count
       end
     end
 
