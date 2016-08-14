@@ -14,15 +14,15 @@ class AlphameticsTest < Minitest::Test
     assert_equal(expect, actual)
   end
 
-  # # This test has been commented out due its long runtime.
-  # def test_solve_long_puzzle
-  #   expect = {
-  #     'S' => 9, 'E' => 5, 'N' => 6, 'D' => 7,
-  #     'M' => 1, 'O' => 0, 'R' => 8, 'Y' => 2
-  #   }
-  #   actual = Alphametics.new.solve('SEND + MORE == MONEY')
-  #   assert_equal(expect, actual)
-  # end
+  # This test has been commented out due its long runtime.
+  def test_solve_long_puzzle
+    expect = {
+      'S' => 9, 'E' => 5, 'N' => 6, 'D' => 7,
+      'M' => 1, 'O' => 0, 'R' => 8, 'Y' => 2
+    }
+    actual = Alphametics.new.solve('SEND + MORE == MONEY')
+    assert_equal(expect, actual)
+  end
 
   def test_solve_puzzle_with_multiplication
     expect = {

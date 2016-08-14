@@ -41,23 +41,22 @@ class Alphametics
     attr_reader :parts
 
     class PossibilityGenerator
+      DIGITS = (0..9).to_a.freeze
+
       def initialize(keys)
         @keys = keys
       end
 
       def possibilities
-        possibilities_for_keys keys
+        permutations.map { |p| keys.zip(p).to_h }
       end
 
       private
 
       attr_reader :keys
 
-      def possibilities_for_keys(keys, hash={})
-        return hash if keys.empty?
-        (0..9).map do |i|
-          possibilities_for_keys keys[1,keys.count], hash.merge(keys.first =>  i)
-        end.flatten
+      def permutations
+        DIGITS.permutation(keys.length)
       end
     end
 
