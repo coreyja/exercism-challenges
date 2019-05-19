@@ -14,7 +14,7 @@ gigasecond ✅
 bob ✅
 matching-brackets ✅
 clock ✅
-dot-dsl
+dot-dsl ⏳
 simple-linked-list
 pascals-triangle
 paasio
