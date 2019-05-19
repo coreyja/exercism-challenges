@@ -13,7 +13,7 @@ reverse-string ✅
 gigasecond ✅
 bob ✅
 matching-brackets ✅
-clock ⏳
+clock ✅
 dot-dsl
 simple-linked-list
 pascals-triangle
